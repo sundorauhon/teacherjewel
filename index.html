@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jewel Sir | Mathematics Teacher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Jewel Sir</h1>
+  <p>Mathematics Teacher | Ministry of Education</p>
+</header>
+
+<section class="courses">
+  <h2>Courses (Class 6–10)</h2>
+
+  <div class="course">
+    <h3>Class Six Mathematics</h3>
+    <button onclick="addToCart('Class 6 Math', 1000)">Add to Cart</button>
+  </div>
+
+  <div class="course">
+    <h3>Class Seven Mathematics</h3>
+    <button onclick="addToCart('Class 7 Math', 1200)">Add to Cart</button>
+  </div>
+
+</section>
+
+<section class="cart">
+  <h2>Cart</h2>
+  <ul id="cartItems"></ul>
+  <button onclick="payNow()">Pay with bKash</button>
+</section>
+
+<section class="contact">
+  <h2>Contact</h2>
+  <input id="name" placeholder="Name">
+  <input id="email" placeholder="Email">
+  <textarea id="message" placeholder="Message"></textarea>
+  <button onclick="sendMessage()">Send</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
