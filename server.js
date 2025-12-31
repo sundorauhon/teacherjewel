@@ -8,21 +8,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-/* EMAIL SETUP */
+// Email setup (Gmail)
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "englishmovie31@gmail.com",
-    pass: "YOUR_GMAIL_APP_PASSWORD"
+    pass: "YOUR_GMAIL_APP_PASSWORD" // Use App Password
   }
 });
 
-/* CONTACT FORM API */
+// Contact form API
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    // Mail to owner
+    // Send email to admin
     await transporter.sendMail({
       from: email,
       to: "englishmovie31@gmail.com",
@@ -31,11 +31,11 @@ app.post("/contact", async (req, res) => {
         <h3>New Message</h3>
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
-        <p>${message}</p>
+        <p><b>Message:</b> ${message}</p>
       `
     });
 
-    // Auto reply
+    // Auto-reply to user
     await transporter.sendMail({
       from: "englishmovie31@gmail.com",
       to: email,
