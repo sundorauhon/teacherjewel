@@ -1,82 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jewel Math Academy</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Jewel Parvez Academy | MoE Teacher</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<!-- Header -->
-<header>
-  <h1>Md. Jewel</h1>
-  <p>Mathematics Teacher | Ministry of Education, Bangladesh</p>
-  <div class="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/eO3yRUlaH3U" title="Welcome Video" frameborder="0" allowfullscreen></iframe>
-  </div>
-</header>
+    <nav class="navbar">
+        <div class="container flex-nav">
+            <div class="logo">Jewel Parvez <span>Academy</span></div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
 
-<!-- Courses Section -->
-<section id="classes" class="section">
-  <h2>Courses (Class 6–10)</h2>
-  <div class="class-grid">
-    <div class="class-card">
-      <h3>Class Six</h3>
-      <p>Foundation Mathematics</p>
-      <p class="price">৳1000</p>
-      <button onclick="addToCart('Class Six',1000)">Add to Cart</button>
-    </div>
-    <div class="class-card">
-      <h3>Class Seven</h3>
-      <p>Concept & Practice</p>
-      <p class="price">৳1200</p>
-      <button onclick="addToCart('Class Seven',1200)">Add to Cart</button>
-    </div>
-    <div class="class-card">
-      <h3>Class Eight</h3>
-      <p>Board-Focused Preparation</p>
-      <p class="price">৳1500</p>
-      <button onclick="addToCart('Class Eight',1500)">Add to Cart</button>
-    </div>
-    <div class="class-card">
-      <h3>Class Nine</h3>
-      <p>SSC Creative Math</p>
-      <p class="price">৳1800</p>
-      <button onclick="addToCart('Class Nine',1800)">Add to Cart</button>
-    </div>
-    <div class="class-card">
-      <h3>Class Ten</h3>
-      <p>SSC Exam Special</p>
-      <p class="price">৳2000</p>
-      <button onclick="addToCart('Class Ten',2000)">Add to Cart</button>
-    </div>
-  </div>
-</section>
+    <header class="hero">
+        <div class="container">
+            <h1>Expert Guidance for Classes 6-10</h1>
+            <p>Learn from Md Jewel Parvez, Teacher at Ministry of Education</p>
+        </div>
+    </header>
 
-<!-- Cart Drawer -->
-<div id="cartDrawer" class="cart-drawer">
-  <h3>Your Cart</h3>
-  <div id="cartItems"></div>
-  <h4>Total: ৳<span id="cartTotal">0</span></h4>
-  <button onclick="payNow()">Proceed to Payment</button>
-  <button class="close" onclick="toggleCart()">Close</button>
-</div>
+    <main class="container main-content">
+        <!-- Course Selection -->
+        <section class="course-section">
+            <h2>Select Your Courses</h2>
+            <div class="course-grid" id="course-display">
+                <!-- Courses injected by JS -->
+            </div>
+        </section>
 
-<!-- Cart Button -->
-<div class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+        <!-- Checkout Section -->
+        <aside class="checkout-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3>Your Selection</h3>
+                <button class="close-btn" onclick="toggleCart()">×</button>
+            </div>
+            
+            <div id="cart-items">
+                <p class="empty-msg">No courses added yet.</p>
+            </div>
 
-<!-- Contact Form -->
-<section class="contact section">
-  <h2>Contact & Feedback</h2>
-  <form id="contactForm" onsubmit="sendMessage(); return false;">
-    <input id="name" type="text" placeholder="Name" required>
-    <input id="email" type="email" placeholder="Email" required>
-    <textarea id="message" placeholder="Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+            <div class="total-box">
+                <span>Total Amount:</span>
+                <strong>৳<span id="total-price">0</span></strong>
+            </div>
 
-<script src="script.js"></script>
+            <hr>
+
+            <!-- Student Info Form -->
+            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" class="student-form">
+                <h4>Student Information</h4>
+                <input type="hidden" name="Selected Courses" id="hidden-courses">
+                <input type="hidden" name="Total Price" id="hidden-total">
+                
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <select name="class" required>
+                    <option value="">Select Class</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                </select>
+                <input type="text" name="trxid" placeholder="bKash Transaction ID" required>
+                
+                <p class="payment-note">1. Pay total amount via bKash button below.<br>2. Enter Transaction ID above.<br>3. Click "Complete Enrollment".</p>
+
+                <a href="https://shop.bkash.com/hosenacademycom01841986933/paymentlink/default-payment" 
+                   target="_blank" class="bkash-btn">
+                   <img src="https://www.logo.wine/a/logo/BKash-Logo.wine.svg" alt="bKash"> Pay Now
+                </a>
+
+                <button type="submit" class="submit-btn">Complete Enrollment</button>
+            </form>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
