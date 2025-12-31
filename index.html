@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md Jewel Parvez Academy | MoE Teacher</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="container flex-nav">
+        <div class="container nav-flex">
             <div class="logo">Jewel Parvez <span>Academy</span></div>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-basket"></i>
                 <span id="cart-count">0</span>
             </div>
         </div>
@@ -22,65 +21,80 @@
 
     <header class="hero">
         <div class="container">
-            <h1>Expert Guidance for Classes 6-10</h1>
-            <p>Learn from Md Jewel Parvez, Teacher at Ministry of Education</p>
+            <h1>Classes 6 - 10 Digital Classroom</h1>
+            <p>Quality education by Md Jewel Parvez, Ministry of Education</p>
         </div>
     </header>
 
-    <main class="container main-content">
-        <!-- Course Selection -->
+    <main class="container main-layout">
+        <!-- Course Grid -->
         <section class="course-section">
-            <h2>Select Your Courses</h2>
-            <div class="course-grid" id="course-display">
-                <!-- Courses injected by JS -->
+            <h2 class="section-title">Select Your Courses</h2>
+            <div class="grid" id="course-list">
+                <!-- Courses loaded by JS -->
             </div>
         </section>
 
-        <!-- Checkout Section -->
-        <aside class="checkout-sidebar" id="cart-sidebar">
-            <div class="cart-header">
-                <h3>Your Selection</h3>
-                <button class="close-btn" onclick="toggleCart()">×</button>
-            </div>
-            
-            <div id="cart-items">
-                <p class="empty-msg">No courses added yet.</p>
+        <!-- Fixed Sidebar Cart & Form -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Registration & Checkout</h3>
+                <button class="close-sidebar" onclick="toggleCart()">&times;</button>
             </div>
 
-            <div class="total-box">
-                <span>Total Amount:</span>
+            <div id="cart-items-list">
+                <p class="empty-text">Your cart is empty</p>
+            </div>
+
+            <div class="total-display">
+                <span>Total:</span>
                 <strong>৳<span id="total-price">0</span></strong>
             </div>
 
-            <hr>
+            <!-- THE FORM (CONNECTED TO YOUR FORMSPREE) -->
+            <form action="https://formspree.io/f/xnjnajwd" method="POST" id="enrollment-form">
+                <!-- Hidden fields to collect cart data automatically -->
+                <input type="hidden" name="Purchased_Courses" id="hidden-courses">
+                <input type="hidden" name="Grand_Total" id="hidden-total">
 
-            <!-- Student Info Form -->
-            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" class="student-form">
-                <h4>Student Information</h4>
-                <input type="hidden" name="Selected Courses" id="hidden-courses">
-                <input type="hidden" name="Total Price" id="hidden-total">
-                
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
-                <select name="class" required>
-                    <option value="">Select Class</option>
-                    <option value="6">Class 6</option>
-                    <option value="7">Class 7</option>
-                    <option value="8">Class 8</option>
-                    <option value="9">Class 9</option>
-                    <option value="10">Class 10</option>
-                </select>
-                <input type="text" name="trxid" placeholder="bKash Transaction ID" required>
-                
-                <p class="payment-note">1. Pay total amount via bKash button below.<br>2. Enter Transaction ID above.<br>3. Click "Complete Enrollment".</p>
+                <div class="form-group">
+                    <label>Student Name</label>
+                    <input type="text" name="Student_Name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="Phone" placeholder="017XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select name="Class" required>
+                        <option value="">Select Class</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>bKash Transaction ID (TrxID)</label>
+                    <input type="text" name="Transaction_ID" placeholder="8N7X6..." required>
+                </div>
+
+                <div class="payment-instructions">
+                    <p>1. Click the bKash button to pay total amount.</p>
+                    <p>2. Paste the Transaction ID from SMS above.</p>
+                </div>
 
                 <a href="https://shop.bkash.com/hosenacademycom01841986933/paymentlink/default-payment" 
-                   target="_blank" class="bkash-btn">
-                   <img src="https://www.logo.wine/a/logo/BKash-Logo.wine.svg" alt="bKash"> Pay Now
+                   target="_blank" class="bkash-link">
+                    <img src="https://www.logo.wine/a/logo/BKash-Logo.wine.svg" alt="bKash">
+                    Pay with bKash
                 </a>
 
-                <button type="submit" class="submit-btn">Complete Enrollment</button>
+                <button type="submit" class="submit-btn">Confirm Enrollment</button>
             </form>
+            <div id="form-status"></div>
         </aside>
     </main>
 
