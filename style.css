@@ -7,7 +7,22 @@ body {
 
 header {
   text-align: center;
-  padding: 40px;
+  padding: 20px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  margin: 20px auto;
+  max-width: 560px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 15px;
 }
 
 .section {
@@ -31,10 +46,7 @@ header {
   text-align: center;
 }
 
-.price {
-  font-weight: bold;
-  margin: 10px 0;
-}
+.price { font-weight: bold; margin: 10px 0; }
 
 button {
   background: #2563eb;
@@ -45,9 +57,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: #1e3a8a;
-}
+button:hover { background: #1e3a8a; }
 
 /* Cart Drawer */
 .cart-drawer {
@@ -82,8 +92,22 @@ button:hover {
   z-index: 2000;
 }
 
-input, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ccc; }
+/* Contact Form */
+.contact form {
+  display: flex;
+  flex-direction: column;
+}
 
-@media(max-width:768px) {
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+@media(max-width:768px){
   .cart-drawer { width: 100%; }
+  .class-grid { grid-template-columns: 1fr; }
 }
